@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="HgBgWY" name="Synth" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              pluginFormats="buildVST3" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginManufacturer="CodeZen">
+  <MAINGROUP id="oiBkn1" name="Synth">
+    <GROUP id="{EAD7F272-DB45-4AA6-0F19-60A24570641C}" name="GUI">
+      <GROUP id="{3CD991B5-2D1E-7AE8-7067-F81BF93E53E1}" name="LookAndFeel">
+        <FILE id="xpEfPK" name="Knobs.h" compile="0" resource="0" file="Source/GUI/LookAndFeel/Knobs.h"/>
+        <FILE id="mnmkA0" name="PopUpLook.h" compile="0" resource="0" file="Source/GUI/LookAndFeel/PopUpLook.h"/>
+      </GROUP>
+      <GROUP id="{1D22A994-B7FC-8CE7-3B1F-C714A9B21825}" name="WaveForms">
+        <FILE id="tsJTXD" name="Saw_gui.h" compile="0" resource="0" file="Source/GUI/WaveForms/Saw_gui.h"/>
+        <FILE id="cub9de" name="Sine_gui.h" compile="0" resource="0" file="Source/GUI/WaveForms/Sine_gui.h"/>
+        <FILE id="jiwIXM" name="Square_gui.h" compile="0" resource="0" file="Source/GUI/WaveForms/Square_gui.h"/>
+        <FILE id="Ww2uFP" name="Tri_gui.h" compile="0" resource="0" file="Source/GUI/WaveForms/Tri_gui.h"/>
+      </GROUP>
+      <FILE id="XOqd2H" name="ADSR_gui.h" compile="0" resource="0" file="Source/GUI/ADSR_gui.h"/>
+      <FILE id="tFohSs" name="WaveFormPopUpMenu.h" compile="0" resource="0"
+            file="Source/GUI/WaveFormPopUpMenu.h"/>
+    </GROUP>
+    <GROUP id="{86B7F80C-C04F-FC04-6B48-BC45F9B21D4F}" name="Source">
+      <FILE id="uqoQGT" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="la0T4Q" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="rUYE5d" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="aJROyn" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+    <GROUP id="{5F1FBD44-0578-8E12-F512-12E8E099A7EF}" name="Synth">
+      <FILE id="VipcWK" name="CustomADSR.h" compile="0" resource="0" file="Source/Synth/CustomADSR.h"/>
+      <FILE id="q8uHwZ" name="MidiSynth.h" compile="0" resource="0" file="Source/Synth/MidiSynth.h"/>
+    </GROUP>
+    <GROUP id="{5FC3D6C1-E431-276C-B9F6-C24059C0C428}" name="WaveTables">
+      <FILE id="SEYDKr" name="Sawtooth.h" compile="0" resource="0" file="Source/WaveTables/Sawtooth.h"/>
+      <FILE id="YA1j7m" name="Sine.h" compile="0" resource="0" file="Source/WaveTables/Sine.h"/>
+      <FILE id="cjFh1K" name="Square.h" compile="0" resource="0" file="Source/WaveTables/Square.h"/>
+      <FILE id="BXzoaT" name="Triangle.h" compile="0" resource="0" file="Source/WaveTables/Triangle.h"/>
+      <FILE id="ucN6xw" name="WaveTableOscillator.h" compile="0" resource="0"
+            file="Source/WaveTables/WaveTableOscillator.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="Synth"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="Synth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../../../Applications/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+</JUCERPROJECT>
