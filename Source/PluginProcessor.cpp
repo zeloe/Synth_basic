@@ -31,6 +31,8 @@ SynthAudioProcessor::SynthAudioProcessor()
     sustainTime = treeState.getRawParameterValue("SustainTime");
     release = treeState.getRawParameterValue("Release");
     waveTabletoUse = treeState.getRawParameterValue("WaveTable1");
+    waveTabletoUse2 = treeState.getRawParameterValue("WaveTable2");
+    waveTabletoUse3 = treeState.getRawParameterValue("WaveTable3");
     midiSynth = std::make_unique<MidiSynth>();
     treeState.addParameterListener("AttackTime", this);
     treeState.addParameterListener("AttackValue", this);
@@ -182,6 +184,22 @@ void SynthAudioProcessor::parameterChanged(const juce::String &paramterID, float
         }
     }
     
+    if(paramterID == "WaveTable2")
+    {
+        for(int i = 0; i < midiSynth->waveTable.size(); ++i)
+        {
+            midiSynth->getWaveTable2(newValue);
+        }
+    }
+    
+    if(paramterID == "WaveTable3")
+    {
+        for(int i = 0; i < midiSynth->waveTable.size(); ++i)
+        {
+            midiSynth->getWaveTable3(newValue);
+        }
+    }
+    
     if(paramterID == "Semitones1")
     {
         for(int i = 0; i < midiSynth->waveTable.size(); ++i)
@@ -219,6 +237,8 @@ void SynthAudioProcessor::initParams()
         midiSynth->waveTable[i].adsr->getSustainTime(*sustainTime);
         midiSynth->waveTable[i].adsr->getReleaseTime(*release);
         midiSynth->getWaveTable(*waveTabletoUse);
+        midiSynth->getWaveTable(*waveTabletoUse2);
+        midiSynth->getWaveTable(*waveTabletoUse3);
     }
     
     

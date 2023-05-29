@@ -155,15 +155,26 @@ inline float shiftedFrequency(float frequency, float semitones)
     
     void getWaveTable(int index)
     {
-        //look at it
-        if(index != previousIndex)
-        {
             for(int i = 0; i < waveTable.size(); ++i)
             {
                 waveTable[i].swapTable(index);
             }
-            previousIndex = index;
-        }
+    }
+    
+    void getWaveTable2(int index)
+    {
+            for(int i = 0; i < waveTable.size(); ++i)
+            {
+                waveTable[i].swapTable2(index);
+            }
+    }
+    
+    void getWaveTable3(int index)
+    {
+            for(int i = 0; i < waveTable.size(); ++i)
+            {
+                waveTable[i].swapTable3(index);
+            }
     }
     
     
