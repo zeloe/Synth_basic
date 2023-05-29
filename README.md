@@ -7,4 +7,6 @@ Based on code written from [WolfSound](https://github.com/JanWilczek/wavetable-s
 - Fix Pop up menu
 - Fix wavetable switching
 - Fix Adsr (Processing and GUI)
+- Add Gain for wavetabels
+- Add Unison Feature
 - ...
