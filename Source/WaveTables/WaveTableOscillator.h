@@ -15,7 +15,7 @@
 #include "Sawtooth.h"
 #include "Triangle.h"
 #include "../Synth/CustomADSR.h"
-
+#include "../Synth/gain_block.h"
 class WaveTableOscillator
 {
 public:
@@ -26,6 +26,9 @@ public:
     squareTable(std::make_unique<Square>()),
     sawtoothTable(std::make_unique<Sawtooth>()),
     triangleTable(std::make_unique<Triangle>()),
+    gainOsc1(std::make_unique<Gain_Block>()),
+    gainOsc2(std::make_unique<Gain_Block>()),
+    gainOsc3(std::make_unique<Gain_Block>()),
     tableSize(sineTable->waveTable.getNumSamples() - 1),
     wavetable(&sineTable->waveTable),
     wavetable2(&sineTable->waveTable),
@@ -35,10 +38,14 @@ public:
     ~WaveTableOscillator()
     {} ;
     
-    void prepare(float sampleRate)
+    void prepare(float sampleRate, int blocksize)
     {
         //prepare funktion die vor dem ausführen gebarucht wird
         m_sampleRate = sampleRate;
+        gainOsc1->prepare(sampleRate);
+        gainOsc2->prepare(sampleRate);
+        gainOsc3->prepare(sampleRate);
+        
     }
     
     void getMidiNote(int midiNote)
@@ -58,6 +65,22 @@ public:
         // um die velocity zu bekommen
         m_velocity = velocity;
     }
+    
+    void getgainOsc1(float gain)
+    {
+        gainOsc1->setGain(gain);
+    }
+    
+    void getgainOsc2(float gain)
+    {
+        gainOsc2->setGain(gain);
+    }
+    
+    void getgainOsc3(float gain)
+    {
+        gainOsc3->setGain(gain);
+    }
+    
     
     
     void setFrequency (float frequency)
@@ -142,7 +165,7 @@ public:
     float getAllTables()
     {
         // return Funktion für alle WaveTables
-        return getNextSample() + getNextSample2() + getNextSample3();
+        return gainOsc1->process() * getNextSample() + gainOsc2->process() * getNextSample2() + gainOsc3->process() * getNextSample3();
     }
     
     void swapTable(unsigned int index)
@@ -225,6 +248,10 @@ private:
     std::unique_ptr<Square> squareTable;
     std::unique_ptr<Sawtooth> sawtoothTable;
     std::unique_ptr<Triangle> triangleTable;
+    
+    std::unique_ptr<Gain_Block> gainOsc1;
+    std::unique_ptr<Gain_Block> gainOsc2;
+    std::unique_ptr<Gain_Block> gainOsc3;
     const int tableSize;
     juce::AudioSampleBuffer* wavetable;
     juce::AudioSampleBuffer* wavetable2;

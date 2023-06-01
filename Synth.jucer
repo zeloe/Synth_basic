@@ -30,6 +30,7 @@
       <FILE id="aJROyn" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
     <GROUP id="{5F1FBD44-0578-8E12-F512-12E8E099A7EF}" name="Synth">
+      <FILE id="N93vPa" name="gain_block.h" compile="0" resource="0" file="Source/Synth/gain_block.h"/>
       <FILE id="VipcWK" name="CustomADSR.h" compile="0" resource="0" file="Source/Synth/CustomADSR.h"/>
       <FILE id="q8uHwZ" name="MidiSynth.h" compile="0" resource="0" file="Source/Synth/MidiSynth.h"/>
     </GROUP>

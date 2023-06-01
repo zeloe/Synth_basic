@@ -73,6 +73,10 @@ private:
     std::atomic<float>* waveTabletoUse2;
     std::atomic<float>* waveTabletoUse3;
     
+    std::atomic<float>* gainOsc1;
+    std::atomic<float>* gainOsc2;
+    std::atomic<float>* gainOsc3;
+    
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthAudioProcessor)
 };

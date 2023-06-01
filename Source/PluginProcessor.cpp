@@ -33,6 +33,10 @@ SynthAudioProcessor::SynthAudioProcessor()
     waveTabletoUse = treeState.getRawParameterValue("WaveTable1");
     waveTabletoUse2 = treeState.getRawParameterValue("WaveTable2");
     waveTabletoUse3 = treeState.getRawParameterValue("WaveTable3");
+    gainOsc1 = treeState.getRawParameterValue("GainOsc1");
+    gainOsc2 = treeState.getRawParameterValue("GainOsc2");
+    gainOsc3 = treeState.getRawParameterValue("GainOsc3");
+    
     midiSynth = std::make_unique<MidiSynth>();
     treeState.addParameterListener("AttackTime", this);
     treeState.addParameterListener("AttackValue", this);
@@ -47,6 +51,11 @@ SynthAudioProcessor::SynthAudioProcessor()
     treeState.addParameterListener("Semitones1", this);
     treeState.addParameterListener("Semitones2", this);
     treeState.addParameterListener("Semitones3", this);
+    
+    treeState.addParameterListener("GainOsc1", this);
+    treeState.addParameterListener("GainOsc2", this);
+    treeState.addParameterListener("GainOsc3", this);
+    
     
 }
 
@@ -65,6 +74,10 @@ SynthAudioProcessor::~SynthAudioProcessor()
     treeState.removeParameterListener("Semitones1", this);
     treeState.removeParameterListener("Semitones2", this);
     treeState.removeParameterListener("Semitones3", this);
+    
+    treeState.removeParameterListener("GainOsc1", this);
+    treeState.removeParameterListener("GainOsc2", this);
+    treeState.removeParameterListener("GainOsc3", this);
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout
@@ -99,6 +112,11 @@ SynthAudioProcessor::createParameterLayout()
     
     auto pSemitones3 = std::make_unique<juce::AudioParameterInt>("Semitones3", "Semitones3",-24,24, 0);
      
+    auto pgainOsc1 = std::make_unique<juce::AudioParameterFloat>("GainOsc1","GainOsc1",0.00f,1.0f,0.24f);
+    
+    auto pgainOsc2 = std::make_unique<juce::AudioParameterFloat>("GainOsc2","GainOsc2",0.00f,1.0f,0.24f);
+    
+    auto pgainOsc3 = std::make_unique<juce::AudioParameterFloat>("GainOsc3","GainOsc3",0.00f,1.0f,0.24f);
     
     params.push_back(std::move(pAttackTime));
     params.push_back(std::move(pAttackValue));
@@ -117,6 +135,11 @@ SynthAudioProcessor::createParameterLayout()
     params.push_back(std::move(pSemitones1));
     params.push_back(std::move(pSemitones2));
     params.push_back(std::move(pSemitones3));
+    
+    
+    params.push_back(std::move(pgainOsc1));
+    params.push_back(std::move(pgainOsc2));
+    params.push_back(std::move(pgainOsc3));
     
     return {params.begin(),params.end()};
 }
@@ -223,6 +246,30 @@ void SynthAudioProcessor::parameterChanged(const juce::String &paramterID, float
             midiSynth->getSemitones3(newValue);
         }
     }
+    
+    if(paramterID == "GainOsc1")
+    {
+        for(int i = 0; i < midiSynth->waveTable.size(); ++i)
+        {
+            midiSynth->waveTable[i].getgainOsc1(newValue);
+        }
+    }
+    
+    if(paramterID == "GainOsc2")
+    {
+        for(int i = 0; i < midiSynth->waveTable.size(); ++i)
+        {
+            midiSynth->waveTable[i].getgainOsc2(newValue);
+        }
+    }
+    
+    if(paramterID == "GainOsc3")
+    {
+        for(int i = 0; i < midiSynth->waveTable.size(); ++i)
+        {
+            midiSynth->waveTable[i].getgainOsc3(newValue);
+        }
+    }
 }
 
 void SynthAudioProcessor::initParams()
@@ -239,6 +286,9 @@ void SynthAudioProcessor::initParams()
         midiSynth->getWaveTable(*waveTabletoUse);
         midiSynth->getWaveTable(*waveTabletoUse2);
         midiSynth->getWaveTable(*waveTabletoUse3);
+        midiSynth->waveTable[i].getgainOsc1(*gainOsc1);
+        midiSynth->waveTable[i].getgainOsc2(*gainOsc2);
+        midiSynth->waveTable[i].getgainOsc3(*gainOsc3);
     }
     
     

@@ -23,7 +23,7 @@ public:
         //prepare Funktion
         for (int i = 0; i < waveTable.size(); ++i)
         {
-            waveTable[i].prepare(sampleRate);
+            waveTable[i].prepare(sampleRate,blockSize);
             waveTable[i].adsr->prepare(sampleRate, blockSize);
         }
         // Size für die temporären Buffer
